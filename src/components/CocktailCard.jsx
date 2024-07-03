@@ -1,4 +1,23 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const CocktailCard = ({ id, img, drinkName, glass, alcoholType }) => {
+  return (
+    <Wrapper>
+      <img src={img} alt={drinkName} className='img' />
+      <div className='footer'>
+        <h4>{drinkName}</h4>
+        <h5>{glass}</h5>
+        <p>{alcoholType}</p>
+        <Link to={`/cocktail/${id}`}>
+          <button type='button' className='btn'>
+            details
+          </button>
+        </Link>
+      </div>
+    </Wrapper>
+  );
+};
 const Wrapper = styled.article`
   background: var(--white);
   box-shadow: var(--shadow-2);
@@ -29,5 +48,4 @@ const Wrapper = styled.article`
     }
   }
 `;
-
-export default Wrapper;
+export default CocktailCard;

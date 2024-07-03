@@ -6,8 +6,10 @@ import {
   Error,
   Newsletter,
   Cocktail,
+  SinglePageError,
 } from './pages';
-import { loader as loadingLoader } from './pages/Landing';
+import { loader as landingLoader } from './pages/Landing';
+import { loader as singleCocktailLoader } from './pages/Cocktail';
 
 const router = createBrowserRouter([
   {
@@ -17,20 +19,25 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: loadingLoader,
+        loader: landingLoader,
         element: <Landing />,
+        errorElement: <SinglePageError />,
       },
       {
-        path: 'cocktail',
+        path: 'cocktail/:id',
+        loader: singleCocktailLoader,
         element: <Cocktail />,
+        errorElement: <SinglePageError />,
       },
       {
         path: 'newsletter',
         element: <Newsletter />,
+        errorElement: <SinglePageError />,
       },
       {
         path: 'about',
         element: <About />,
+        errorElement: <SinglePageError />,
       },
     ],
   },

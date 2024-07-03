@@ -20,9 +20,6 @@ function Error() {
   return (
     <Wrapper>
       <h3>There was an Error..</h3>
-      <Link to='/'>
-        <a href='#'>Back Home</a>
-      </Link>
     </Wrapper>
   );
 }
