@@ -1,18 +1,21 @@
 import styled from 'styled-components';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, Navigate, useLoaderData } from 'react-router-dom';
 import axios from 'axios';
 const cocktailAPI = 'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
 
 export const loader = async ({ params }) => {
   const { id } = params;
-  const response = await axios.get(`
+  const { data } = await axios.get(`
     ${cocktailAPI}${id}`);
-
-  console.log(response.data.drinks);
-  return { data: response.data.drinks[0] };
+  return { data };
 };
+
 const Cocktail = () => {
   const { data } = useLoaderData();
+
+  if (!data.drinks) return <Navigate to='/' />;
+
+  const drink = data.drinks[0];
   const {
     strDrink: drinkName,
     strCategory: category,
@@ -20,7 +23,12 @@ const Cocktail = () => {
     strGlass: glass,
     strDrinkThumb: img,
     strInstructions: instructions,
-  } = data;
+  } = drink;
+  const ingredients = Object.keys(drink)
+    .filter((key) => {
+      return key.includes('strIngredient') && drink[key] !== null;
+    })
+    .map((key) => drink[key]);
 
   return (
     <Wrapper>
@@ -53,6 +61,9 @@ const Cocktail = () => {
           </p>
           <p>
             <span className='drink-data'>ingredients:</span>
+            {ingredients.map((item, index) => {
+              return index < ingredients.length - 1 ? `${item}, ` : item;
+            })}
           </p>
           <p>
             <span className='drink-data'>instructions:</span>

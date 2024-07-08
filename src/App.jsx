@@ -4,7 +4,7 @@ import {
   About,
   Landing,
   Error,
-  Newsletter,
+  ContactMe,
   Cocktail,
   SinglePageError,
 } from './pages';
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
         errorElement: <SinglePageError />,
       },
       {
-        path: 'newsletter',
-        element: <Newsletter />,
+        path: 'contactMe',
+        element: <ContactMe />,
         errorElement: <SinglePageError />,
       },
       {

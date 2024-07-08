@@ -5,7 +5,8 @@ function SinglePageError() {
 
   return (
     <Wrapper>
-      <h3>{error.message}</h3>
+      <h3>there was an error...</h3>
+      {console.log(error.message)}
     </Wrapper>
   );
 }
