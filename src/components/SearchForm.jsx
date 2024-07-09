@@ -1,17 +1,22 @@
 import styled from 'styled-components';
-function SearchForm() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(e.target.elements.cocktailInput.value);
-  };
+import { Form, useNavigation } from 'react-router-dom';
+function SearchForm({ cocktailName }) {
+  const navigation = useNavigation();
+  const isSearching = navigation.state === 'submitting';
+
   return (
     <Wrapper>
-      <form action='submit' onSubmit={handleSubmit}>
-        <input type='text' name='cocktailInput' className='form-input' />
-        <button type='submit' className='btn'>
-          Search
+      <Form className='form'>
+        <input
+          type='search'
+          name='search'
+          className='form-input'
+          defaultValue={cocktailName}
+        />
+        <button type='submit' className='btn' disabled={isSearching}>
+          {isSearching ? 'Searching' : 'Search'}
         </button>
-      </form>
+      </Form>
     </Wrapper>
   );
 }
