@@ -3,7 +3,13 @@ import CocktailCard from './CocktailCard';
 const CocktailList = ({ drinks }) => {
   if (!drinks) {
     return (
-      <Wrapper>
+      <Wrapper
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <h4 style={{ textAlign: 'center' }}>
           There are no matching cocktails found...
         </h4>

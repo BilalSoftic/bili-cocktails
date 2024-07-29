@@ -25,6 +25,7 @@ const Wrapper = styled.div`
   padding: 1.5rem;
   background: white;
   margin-bottom: 6rem;
+  border-radius: 2rem;
   form {
     display: grid;
     grid-template-columns: 1fr auto;
